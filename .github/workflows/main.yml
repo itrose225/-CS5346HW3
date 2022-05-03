@@ -19,36 +19,37 @@ jobs:
       runs-on: ubuntu-latest
 
   deploy:
+    runs-on: ubuntu-latest
     name: Setup Accoount
     env:
         IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/HW3
-      steps:
+    steps:
 
-      - name: Login
-          uses: google-github-actions/setup-gcloud@v0
-          with:
-            project_id: ${{ secrets.PROJECT_ID }}
-            service_account_email: ${{ secrets.GCP_EMAIL }}
-            service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+    - name: "Login"
+      uses: google-github-actions/setup-gcloud@v0
+      with:
+        project_id: ${{ secrets.PROJECT_ID }}
+        service_account_email: ${{ secrets.GCP_EMAIL }}
+        service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
 
-   - name: Configure Docker
-          run: gcloud auth configure-docker --quiet
+    - name: Configure Docker
+      run: "gcloud auth configure-docker --quiet"
 
-        - name: Checkout repository
-          uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: "actions/checkout@v2"
 
-        - name: Build Docker image
-          run: docker build . -t $IMAGE_NAME
+    - name: Build Docker image
+      run: docker build . -t $IMAGE_NAME
           
     - name: Test Docker image
-          run: docker run $IMAGE_NAME sh -c "go test -v"
+      run: "docker run $IMAGE_NAME sh -c 'go test -v'"
 
-        - name: Push Docker image
-          run: docker push $IMAGE_NAME
+    - name: Push Docker image
+      run: docker push $IMAGE_NAME
 
-        - name: Deploy Docker image
-          run: gcloud run deploy ${{ secrets.PROJECT_ID }} --image $IMAGE_NAME --region us-central1 --platform managed
-      # Runs a set of commands using the runners shell
-      - name: Please be working
-        run: |
+    - name: Deploy Docker image
+      run: gcloud run deploy ${{ secrets.PROJECT_ID }} --image $IMAGE_NAME --region us-central1 --platform managed
+    # Runs a set of commands using the runners shell
+    - name: Please be working
+      run: |
           echo Please
