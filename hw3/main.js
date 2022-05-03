@@ -6,7 +6,7 @@ const port = 8000;
 // Create a request listener
 const requestListener = function (req, res) {
     res.writeHead(200);
-    res.end("Howdy, this is Isaac Rose's HW3 Webpage!!");
+    res.end("Howdy, this is Isaac Rose's HW3 Webpage!! My girlfriend is cool.");
 };
 
 // Create a server
