@@ -42,7 +42,7 @@ jobs:
         run: docker push $IMAGE_NAME
 
       - name: Deploy Docker image
-        run: gcloud run deploy ${{ secrets.PROJECT_ID }} --image $IMAGE_NAME --region us-central1 --platform managed
+        run: gcloud run deploy ${{ secrets.PROJECT_ID }} --image $IMAGE_NAME --region us-central1 --allow-unauthenticated --platform managed
       # Runs a set of commands using the runners shell
       - name: Please be working
         run: |
