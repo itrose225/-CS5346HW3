@@ -4,4 +4,4 @@ WORKDIR /-CS5346HW3
 COPY . .
 
 CMD ["node", "hw3/main.js"]
-EXPOSE 8000
+EXPOSE 8080
