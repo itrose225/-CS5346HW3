@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Setup Accoount
     env:
-        IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/hw3
+      IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/hw3
     steps:
 
       - name: "Login"
